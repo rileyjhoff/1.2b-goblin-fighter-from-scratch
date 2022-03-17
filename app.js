@@ -36,6 +36,8 @@ let goblins = [
     }
 ];
 
+console.log(defeatedGoblinsEl, defeatedGoblinCount, goblinFormEl, goblinListEl, goblins, player, playerHpEl, playerLevelEl);
+
 // set event listeners 
     // get user input
     // use user input to update state 
