@@ -15,6 +15,8 @@ export function renderGoblins(goblin) {
         nameAndHpEl.append('💀');
     }
 
+    levelEl.append(`Level ${goblin.level}`);
+
     goblinDiv.append(nameAndHpEl, levelEl);
     return goblinDiv;
 }
