@@ -33,24 +33,8 @@ body {
 
 main {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    margin-bottom: calc(var(--footer-height));
-}
-
-section {
-    background-color: var(--color5);
-    max-width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: var(--gutter);
-    padding-bottom: var(--gutter);
-    margin-top: var(--gutter);
-    margin-bottom: var(--gutter);
-    border: solid 2px var(--color1);
+    height: 100%;
 }
 
 header {
@@ -60,7 +44,6 @@ header {
     height: var(--header-height);
     box-shadow: var(--shadow);
 }
-
 
 h2 {
     font-size: 1.8rem;
@@ -76,9 +59,9 @@ header img {
 }
 
 p {
-    margin: var(--gutter);
+    margin: 5px;
 }
-  
+
 footer {
     position: fixed;
     width: 100%;
@@ -88,4 +71,32 @@ footer {
     justify-content: flex-end;
     background-color: var(--color3);
     box-shadow: var(--shadow);
+}
+
+.player-container, .goblin-container {
+    width: 45%;
+    height: 90%;
+    border: solid 1px black;
+    margin-top: var(--gutter);
+    margin-bottom: 50px;
+}
+
+.player-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.player-container div {
+    border: solid 1px black;
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    padding: 10px 30px;
+}
+
+.player-container div > p {
+    /* padding: 5px 10px; */
 }
