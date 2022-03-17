@@ -1,5 +1,12 @@
 // import functions and grab DOM elements
 
+const defeatedGoblinsEl = document.querySelector('#defeated-goblins-count');
+const playerLevelEl = document.querySelector('#player-level');
+const playerHpEl = document.querySelector('#player-hp');
+const goblinFormEl = document.querySelector('#goblin-form');
+const goblinListEl = document.querySelector('#goblins-container');
+
+
 // let state
 
 // set event listeners 
