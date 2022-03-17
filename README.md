@@ -24,3 +24,30 @@ Additional considerations:
   - What needs to live in a persistence layer?
 - Is there some state we need to initialize?
 - Ask: should any of this work be abstracted into functions? (i.e., is the work complicated? can it be resused?)
+
+## Plan
+
+![wireframes](/assets/wireframe.png)
+
+## HTML Elements
+
+- two sections or divs to split page into a left (player) and right (goblin) side
+  - how? set each div or section to 50% width and use display:flex; for main
+- three divs for the player side
+  - why? one to show goblins defeated, one to show player hp, and another to show the player level (might combine with player hp div)
+  - how? display: flex; to get divs in a nice order
+- form to add goblins
+  - includes input and button
+- div for the goblin side
+  - why? to hold the list of goblins
+
+## Events
+
+- user adds goblin
+- user clicks goblin to attack
+
+## Order
+
+- add html elements
+- initial styling
+- grab DOM elements
