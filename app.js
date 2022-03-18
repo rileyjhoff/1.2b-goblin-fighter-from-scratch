@@ -31,7 +31,7 @@ let goblins = [
     },
     {
         name: 'Hogger Jr',
-        hp: 2,
+        hp: 3,
         level: 1,
         strength: 1,
         agility: 1,
@@ -58,18 +58,17 @@ goblinFormEl.addEventListener('submit', (e) => {
         goblinLvl = 1;
     }
     if (player.level === 2) {
-        goblinLvl = Math.ciel(Math.random() * player.level);
+        goblinLvl = Math.ceil(Math.random() * player.level);
     }
     if (player.level > 2) {
         goblinLvl = player.level - (Math.floor(Math.random() * 2));
     }
     newGoblin.level = goblinLvl;
-    newGoblin.hp = Math.ceil(Math.random() * 3) + Math.ceil(Math.random() * newGoblin.level);
+    newGoblin.hp = 1 + Math.ceil(Math.random() * 3) + Math.ceil(Math.random() * newGoblin.level);
     newGoblin.strength = newGoblin.level;
     newGoblin.agility = newGoblin.level;
     newGoblin.accuracy = newGoblin.level;
     goblins.push(newGoblin);
-    console.log(goblins);
     displayGoblins();
     goblinFormEl.reset();
 });

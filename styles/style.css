@@ -90,7 +90,7 @@ footer {
 
 .player-container div {
     border: solid 2px black;
-    margin: 50px;
+    margin: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -100,9 +100,18 @@ footer {
     text-align: center;
 }
 
-/* #player-stats{
-    transform: translateY(100px);
-} */
+#player-stats {
+    margin-bottom: 10px;
+}
+
+#player-img-container {
+    margin-top: 0;
+    border: none;
+}
+
+#player-img {
+    height: 200px;
+}
 
 .goblin-container {
     display: flex;
