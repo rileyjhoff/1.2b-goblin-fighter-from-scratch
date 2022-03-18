@@ -17,7 +17,7 @@ export function renderGoblins(goblin) {
     } else if (goblin.hp === 0) {
         nameAndHpEl.append(' 💀 ');
         goblinDiv.classList.add('defeated');
-        levelEl.append(' (click to remove goblin)');
+        levelEl.append(' (click to remove)');
     }
 
     nameAndHpEl.append(`   HP: ${goblin.hp}`);

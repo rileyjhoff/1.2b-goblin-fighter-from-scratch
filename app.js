@@ -45,8 +45,14 @@ let goblins = [
 goblinFormEl.addEventListener('submit', (e) => {
     e.preventDefault();
     const data = new FormData(goblinFormEl);
+    let name = '';
+    if (data.get('goblin-name') !== '') {
+        name = data.get('goblin-name');
+    } else {
+        name = `Hogger #${Math.ceil(Math.random() * 1000)}`;
+    }
     const newGoblin = {
-        name: data.get('goblin-name'),
+        name: name,
         level: Math.ceil(Math.random() * player.level)
     };
     newGoblin.hp = Math.ceil(Math.random() * 3) + Math.ceil(Math.random() * newGoblin.level);
@@ -66,7 +72,7 @@ function displayGoblins() {
         goblinDiv.addEventListener('click', () => {
             if (goblin.hp > 0) {
                 hitRolls(goblin);
-                ifDefeated(goblin);
+                ifGoblinDefeated(goblin);
                 levelUp();
                 displayGoblins();
             } else if (goblin.hp === 0) {
@@ -117,7 +123,7 @@ function goblinHitRoll(goblin) {
     }
 }
 
-function ifDefeated(goblin) {
+function ifGoblinDefeated(goblin) {
     if (goblin.hp === 0) {
         alert(`You have defeated ${goblin.name}. ${1 + goblin.level}xp gained. Healed for ${goblin.level} HP`);
         defeatedGoblinCount++;
