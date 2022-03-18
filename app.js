@@ -69,28 +69,8 @@ function displayGoblins() {
         const goblinDiv = renderGoblins(goblin);
         goblinDiv.addEventListener('click', () => {
             if (goblin.hp > 0) {
-                if (Math.random() < (0.5 + ((player.accuracy - goblin.agility) / 10))) {
-                    goblin.hp = goblin.hp - player.strength;
-                    alert(`You hit ${goblin.name} for ${player.strength} damage.`);
-                } else {
-                    alert('You missed!');
-                }
-                if (Math.random() > (0.55 + ((player.agility - goblin.accuracy) / 10)) && goblin.hp !== 0) {
-                    player.hp = player.hp - goblin.strength;
-                    playerHpEl.textContent = player.hp;
-                    alert(`${goblin.name} hit you for ${goblin.strength} damage.`);
-                } else if (goblin.hp !== 0) {
-                    alert(`${goblin.name} missed!`);
-                }
-                if (goblin.hp === 0) {
-                    alert(`You have defeated ${goblin.name}. ${1 + goblin.level}xp gained. Healed for ${goblin.level} HP`);
-                    defeatedGoblinCount++;
-                    defeatedGoblinsEl.textContent = defeatedGoblinCount;
-                    player.hp = player.hp + goblin.level;
-                    playerHpEl.textContent = player.hp;
-                    player.xp = player.xp + 1 + goblin.level;
-                    playerXpEl.textContent = player.xp;
-                }
+                hitRolls(goblin);
+                levelUp();
                 displayGoblins();
             }
         });
@@ -127,33 +107,15 @@ function displayGoblins() {
 
 displayGoblins();
 
-function levelOneRolls() {
-    if (Math.random() > 0.5) {
-        goblin.hp--;
-    }
-    if (Math.random() > 0.66 && goblin.hp !== 0) {
-        player.hp--;
-        playerHpEl.textContent = player.hp;
-    }
-    if (goblin.hp === 0) {
-        alert(`You have defeated ${goblin.name}. ${1 + goblin.level}xp gained.`);
-        defeatedGoblinCount++;
-        defeatedGoblinsEl.textContent = defeatedGoblinCount;
-        player.xp = player.xp + 1 + goblin.level;
-        playerXpEl.textContent = player.xp;
-    }
-    displayGoblins();
-}
-
-function levelTwoRolls() {
+function hitRolls(goblin) {
     if (Math.random() < (0.5 + ((player.accuracy - goblin.agility) / 10))) {
-        goblin.hp = goblin.hp - player.strength;
+        goblin.hp = goblin.hp - Math.ceil(Math.random() * player.strength);
         alert(`You hit ${goblin.name} for ${player.strength} damage.`);
     } else {
         alert('You missed!');
     }
     if (Math.random() > (0.50 + ((player.agility - goblin.accuracy) / 10)) && goblin.hp !== 0) {
-        player.hp = player.hp - goblin.strength;
+        player.hp = player.hp - Math.ceil(Math.random() * goblin.strength);
         playerHpEl.textContent = player.hp;
         alert(`${goblin.name} hit you for ${goblin.strength} damage.`);
     } else if (goblin.hp !== 0) {
@@ -168,12 +130,21 @@ function levelTwoRolls() {
         player.xp = player.xp + 1 + goblin.level;
         playerXpEl.textContent = player.xp;
     }
-    if (player.xp >= 22) {
+}
+
+function levelUp() {
+    if (player.xp >= 5) {
+        player.level = 2;
+        player.strength = 2;
+        player.accuracy = 3;
+        player.agility = 3;
+        playerLevelEl.textContent = player.level;
+    }
+    if (player.xp >= 12) {
         player.level = 3;
         player.strength = 3;
         player.accuracy = 4;
         player.agility = 4;
         playerLevelEl.textContent = player.level;
     }
-    displayGoblins();
 }
