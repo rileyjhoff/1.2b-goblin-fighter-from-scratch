@@ -1,5 +1,5 @@
 // import functions and grab DOM elements
-
+import { renderGoblins } from './render-utils.js';
 const defeatedGoblinsEl = document.querySelector('#defeated-goblins-count');
 const playerLevelEl = document.querySelector('#player-level');
 const playerHpEl = document.querySelector('#player-hp');
@@ -28,7 +28,7 @@ let goblins = [
     },
     {
         name: 'Hogger Jr',
-        hp: Math.ceil(Math.random() * (4)),
+        hp: Math.ceil(Math.random() * (3)),
         level: 1,
         strength: 1,
         agility: 1,
@@ -42,3 +42,13 @@ console.log(defeatedGoblinsEl, defeatedGoblinCount, goblinFormEl, goblinListEl, 
     // get user input
     // use user input to update state 
     // update DOM to reflect the new state
+
+function displayGoblins() {
+    goblinListEl.textContent = '';
+    for (let goblin of goblins) {
+        let goblinDiv = renderGoblins(goblin);
+        goblinListEl.append(goblinDiv);
+    }
+}
+
+displayGoblins();

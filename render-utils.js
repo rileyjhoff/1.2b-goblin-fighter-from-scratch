@@ -3,18 +3,19 @@ export function renderGoblins(goblin) {
     const nameAndHpEl = document.createElement('p');
     const levelEl = document.createElement('p');
 
-    nameAndHpEl.append(`${goblin.name} - HP: ${goblin.hp} `);
+    nameAndHpEl.append(`${goblin.name} `);
 
     if (goblin.hp >= 5) {
-        nameAndHpEl.append('👹');
+        nameAndHpEl.append(' 👹 ');
     } else if (goblin.hp >= 3) {
-        nameAndHpEl.append('😈');
+        nameAndHpEl.append(' 😈 ');
     } else if (goblin.hp >= 1) {
-        nameAndHpEl.append('👿');
+        nameAndHpEl.append(' 👿 ');
     } else if (goblin.hp === 0) {
-        nameAndHpEl.append('💀');
+        nameAndHpEl.append(' 💀 ');
     }
 
+    nameAndHpEl.append(`   HP: ${goblin.hp}`);
     levelEl.append(`Level ${goblin.level}`);
 
     goblinDiv.append(nameAndHpEl, levelEl);
