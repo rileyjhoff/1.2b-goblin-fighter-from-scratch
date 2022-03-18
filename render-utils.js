@@ -1,27 +1,25 @@
 export function renderGoblins(goblin) {
     const goblinDiv = document.createElement('div');
-    const nameAndHpEl = document.createElement('p');
-    const levelEl = document.createElement('p');
+    const nameAndLvlEl = document.createElement('p');
+    const hpEl = document.createElement('p');
 
     goblinDiv.classList.add('goblin');
 
-    nameAndHpEl.append(`${goblin.name} `);
-    levelEl.append(`Level ${goblin.level}`);
+    nameAndLvlEl.append(`${goblin.name} (Lvl ${goblin.level})`);
+    hpEl.append(`HP: ${goblin.hp}`);
 
     if (goblin.hp >= 5) {
-        nameAndHpEl.append(' 👹 ');
+        hpEl.append(' 👹 ');
     } else if (goblin.hp >= 3) {
-        nameAndHpEl.append(' 😈 ');
+        hpEl.append(' 😈 ');
     } else if (goblin.hp >= 1) {
-        nameAndHpEl.append(' ' + ' 👿 ');
+        hpEl.append(' ' + ' 👿 ');
     } else if (goblin.hp === 0) {
-        nameAndHpEl.append(' 💀 ');
+        hpEl.append(' 💀 ');
         goblinDiv.classList.add('defeated');
-        levelEl.append(' (click to remove)');
+        hpEl.append(' (click to remove)');
     }
 
-    nameAndHpEl.append(`   HP: ${goblin.hp}`);
-
-    goblinDiv.append(nameAndHpEl, levelEl);
+    goblinDiv.append(nameAndLvlEl, hpEl);
     return goblinDiv;
 }
