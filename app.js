@@ -1,4 +1,5 @@
 // import functions and grab DOM elements
+
 import { renderGoblins } from './render-utils.js';
 const defeatedGoblinsEl = document.querySelector('#defeated-goblins-count');
 const playerLevelEl = document.querySelector('#player-level');
@@ -7,7 +8,8 @@ const goblinFormEl = document.querySelector('#goblin-form');
 const goblinListEl = document.querySelector('#goblins-container');
 const playerXpEl = document.querySelector('#player-xp');
 
-// let state
+//  state
+
 let defeatedGoblinCount = 0;
 let player = {
     hp: 10,
@@ -37,10 +39,7 @@ let goblins = [
     }
 ];
 
-// set event listeners 
-    // get user input
-    // use user input to update state 
-    // update DOM to reflect the new state
+// event listeners && functions
 
 goblinFormEl.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -70,9 +69,10 @@ function displayGoblins() {
     for (let goblin of goblins) {
         const goblinDiv = renderGoblins(goblin);
         goblinDiv.addEventListener('click', () => {
-            if (goblin.hp > 0) {
+            if (goblin.hp > 0 && player.hp !== 0) {
                 hitRolls(goblin);
                 ifGoblinDefeated(goblin);
+                ifPlayerDefeated();
                 levelUp();
                 displayGoblins();
             } else if (goblin.hp === 0) {
@@ -132,6 +132,12 @@ function ifGoblinDefeated(goblin) {
         playerHpEl.textContent = player.hp;
         player.xp = player.xp + 1 + goblin.level;
         playerXpEl.textContent = player.xp;
+    }
+}
+
+function ifPlayerDefeated() {
+    if (player.hp === 0) {
+        alert('Game over! Refresh to play again.');
     }
 }
 
