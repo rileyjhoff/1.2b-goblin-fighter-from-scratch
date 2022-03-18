@@ -153,18 +153,35 @@ function goblinHitRoll(goblin) {
 }
 
 function levelUp() {
-    if (player.xp >= 5) {
+    if (player.xp >= 6) {
         player.level = 2;
-        player.strength = 2;
-        player.accuracy = 3;
-        player.agility = 3;
-        playerLevelEl.textContent = player.level;
     }
     if (player.xp >= 12) {
         player.level = 3;
-        player.strength = 3;
-        player.accuracy = 4;
-        player.agility = 4;
-        playerLevelEl.textContent = player.level;
     }
+    if (player.xp >= 25) {
+        player.level = 4;
+    }
+    if (player.xp >= 50) {
+        player.level = 5;
+    }
+    if (player.xp >= 100) {
+        player.level = 6;
+    }
+    if (player.xp >= 200) {
+        player.level = 7;
+    }
+    if (player.xp >= 400) {
+        player.level = 8;
+    }
+    if (player.xp >= 800) {
+        player.level = 9;
+    }
+    if (player.xp >= 1600) {
+        player.level = 10;
+    }
+    player.strength = player.level;
+    player.accuracy = 1 + player.level;
+    player.agility = 1 + player.level;
+    playerLevelEl.textContent = player.level;
 }
