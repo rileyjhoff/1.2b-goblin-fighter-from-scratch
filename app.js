@@ -7,6 +7,7 @@ const playerHpEl = document.querySelector('#player-hp');
 const goblinFormEl = document.querySelector('#goblin-form');
 const goblinListEl = document.querySelector('#goblins-container');
 const playerXpEl = document.querySelector('#player-xp');
+const playerImg = document.querySelector('#player-img');
 
 //  state
 
@@ -156,6 +157,7 @@ function ifGoblinDefeated(goblin) {
 function ifPlayerDefeated() {
     if (player.hp === 0) {
         alert('Game over! Refresh to play again.');
+        playerImg.classList.add('game-over');
     }
 }
 

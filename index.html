@@ -13,22 +13,20 @@
 </head>
 
 <body>
-    <header>
-        <div class="gutter-right logo">
-            <img src="./assets/big-logo.png" />
-        </div>
-    </header>
+    <img src="/assets/background.png" alt="" class="background">
     <main>
         <div class="player-container">
             <div id="defeated-goblins-div">
                 <p>You have defeated <span id="defeated-goblins-count">0</span> goblins.</p>
             </div>
-            <div id="player-stats">
-                <p>Level <span id="player-level">1</span> (<span id="player-xp">0</span> xp)</p>
-                <p>Your HP: <span id="player-hp">10</span></p>
+            <div id="player-health">
+                <p>Player HP: <span id="player-hp">10</span></p>
             </div>
             <div id="player-img-container">
                 <img src="/assets/player-img.png" alt="player avatar" id="player-img">
+            </div>
+            <div id="player-level-container">
+                <p>Level <span id="player-level">1</span> (<span id="player-xp">0</span> xp)</p>
             </div>
         </div>
         <div class="goblin-container">
