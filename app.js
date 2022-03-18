@@ -109,6 +109,61 @@ displayGoblins();
 
 function hitRolls(goblin) {
     if (Math.random() < (0.5 + ((player.accuracy - goblin.agility) / 10))) {
+        let playerHit = Math.ceil(Math.random() * player.strength);
+        if (playerHit > goblin.hp) {
+            goblin.hp = 0;
+            alert(`You hit ${goblin.name} for ${goblin.hp} damage.`);
+        } else {
+            goblin.hp = goblin.hp - playerHit;
+            alert(`You hit ${goblin.name} for ${playerHit} damage.`);
+        }
+    } else {
+        alert('You missed!');
+    }
+    if (Math.random() > (0.50 + ((player.agility - goblin.accuracy) / 10)) && goblin.hp !== 0) {
+        player.hp = player.hp - Math.ceil(Math.random() * goblin.strength);
+        playerHpEl.textContent = player.hp;
+        alert(`${goblin.name} hit you for ${goblin.strength} damage.`);
+    } else if (goblin.hp !== 0) {
+        alert(`${goblin.name} missed!`);
+    }
+    if (goblin.hp === 0) {
+        alert(`You have defeated ${goblin.name}. ${1 + goblin.level}xp gained. Healed for ${goblin.level} HP`);
+        defeatedGoblinCount++;
+        defeatedGoblinsEl.textContent = defeatedGoblinCount;
+        player.hp = player.hp + goblin.level;
+        playerHpEl.textContent = player.hp;
+        player.xp = player.xp + 1 + goblin.level;
+        playerXpEl.textContent = player.xp;
+    }
+}
+
+function playerHitRoll(goblin) {
+    if (Math.random() < (0.5 + ((player.accuracy - goblin.agility) / 10))) {
+        let playerHit = Math.ceil(Math.random() * player.strength);
+        if (playerHit > goblin.hp) {
+            goblin.hp = 0;
+            alert(`You hit ${goblin.name} for ${goblin.hp} damage.`);
+        } else {
+            goblin.hp = goblin.hp - playerHit;
+            alert(`You hit ${goblin.name} for ${playerHit} damage.`);
+        }
+    } else {
+        alert('You missed!');
+    }
+    if (goblin.hp === 0) {
+        alert(`You have defeated ${goblin.name}. ${1 + goblin.level}xp gained. Healed for ${goblin.level} HP`);
+        defeatedGoblinCount++;
+        defeatedGoblinsEl.textContent = defeatedGoblinCount;
+        player.hp = player.hp + goblin.level;
+        playerHpEl.textContent = player.hp;
+        player.xp = player.xp + 1 + goblin.level;
+        playerXpEl.textContent = player.xp;
+    }
+}
+
+function goblinHitRoll(goblin) {
+    if (Math.random() < (0.5 + ((player.accuracy - goblin.agility) / 10))) {
         goblin.hp = goblin.hp - Math.ceil(Math.random() * player.strength);
         alert(`You hit ${goblin.name} for ${player.strength} damage.`);
     } else {
@@ -131,6 +186,8 @@ function hitRolls(goblin) {
         playerXpEl.textContent = player.xp;
     }
 }
+
+
 
 function levelUp() {
     if (player.xp >= 5) {
