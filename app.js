@@ -13,14 +13,15 @@ let player = {
     hp: 10,
     level: 1,
     strength: 1,
-    agility: 1,
-    accuracy: 2
+    agility: 2,
+    accuracy: 2,
+    xp: 0
 };
 
 let goblins = [
     {
         name: 'Hogger',
-        hp: Math.ceil(Math.random() * (4)),
+        hp: 4,
         level: 1,
         strength: 1,
         agility: 1,
@@ -28,7 +29,7 @@ let goblins = [
     },
     {
         name: 'Hogger Jr',
-        hp: Math.ceil(Math.random() * (3)),
+        hp: 2,
         level: 1,
         strength: 1,
         agility: 1,
@@ -43,10 +44,29 @@ console.log(defeatedGoblinsEl, defeatedGoblinCount, goblinFormEl, goblinListEl, 
     // use user input to update state 
     // update DOM to reflect the new state
 
+// Math.ceil(Math.random() * (4))
+
+goblinFormEl.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(goblinFormEl);
+    const newGoblin = {
+        name: data.get('goblin-name'),
+        hp: Math.ceil(Math.random() * (3 + player.level)),
+        level: Math.ceil(Math.random() * player.level)
+    };
+    newGoblin.strength = newGoblin.level;
+    newGoblin.agility = newGoblin.level;
+    newGoblin.accuracy = newGoblin.level;
+    goblins.push(newGoblin);
+    console.log(goblins);
+    displayGoblins();
+    goblinFormEl.reset();
+});
+
 function displayGoblins() {
     goblinListEl.textContent = '';
     for (let goblin of goblins) {
-        let goblinDiv = renderGoblins(goblin);
+        const goblinDiv = renderGoblins(goblin);
         goblinListEl.append(goblinDiv);
     }
 }

@@ -3,6 +3,8 @@ export function renderGoblins(goblin) {
     const nameAndHpEl = document.createElement('p');
     const levelEl = document.createElement('p');
 
+    goblinDiv.classList.add('goblin');
+
     nameAndHpEl.append(`${goblin.name} `);
 
     if (goblin.hp >= 5) {
@@ -10,7 +12,7 @@ export function renderGoblins(goblin) {
     } else if (goblin.hp >= 3) {
         nameAndHpEl.append(' 😈 ');
     } else if (goblin.hp >= 1) {
-        nameAndHpEl.append(' 👿 ');
+        nameAndHpEl.append(' ' + ' 👿 ');
     } else if (goblin.hp === 0) {
         nameAndHpEl.append(' 💀 ');
     }
