@@ -133,14 +133,23 @@ function goblinHitRoll(goblin) {
 }
 
 function ifGoblinDefeated(goblin) {
+    const playerHpCap = 10 + player.level * 2;
     if (goblin.hp === 0) {
-        alert(`You have defeated ${goblin.name}. ${1 + goblin.level}xp gained. Healed for ${goblin.level} HP`);
         defeatedGoblinCount++;
         defeatedGoblinsEl.textContent = defeatedGoblinCount;
-        player.hp = player.hp + goblin.level;
-        playerHpEl.textContent = player.hp;
         player.xp = player.xp + 1 + goblin.level;
         playerXpEl.textContent = player.xp;
+        if (player.hp === playerHpCap) {
+            alert(`You have defeated ${goblin.name}. ${1 + goblin.level}xp gained. You can't heal anymore. You are at max HP (${playerHpCap}).`);
+        } else if (player.hp < playerHpCap - goblin.level) {
+            alert(`You have defeated ${goblin.name}. ${1 + goblin.level}xp gained. Healed for ${goblin.level} HP.`);
+            player.hp = player.hp + goblin.level;
+            playerHpEl.textContent = player.hp;
+        } else if (player.hp > playerHpCap - goblin.level) {
+            alert(`You have defeated ${goblin.name}. ${1 + goblin.level}xp gained. Healed for ${playerHpCap - player.hp} HP. You are at Max HP (${playerHpCap}).`);
+            player.hp = playerHpCap;
+            playerHpEl.textContent = player.hp;
+        }
     }
 }
 
