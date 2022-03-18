@@ -29,7 +29,7 @@ let goblins = [
     },
     {
         name: 'Hogger Jr',
-        hp: 3,
+        hp: 1,
         level: 1,
         strength: 1,
         agility: 1,
@@ -70,10 +70,23 @@ function displayGoblins() {
         goblinDiv.addEventListener('click', () => {
             if (goblin.hp > 0) {
                 hitRolls(goblin);
+                if (goblin.hp === 0) {
+                    alert(`You have defeated ${goblin.name}. ${1 + goblin.level}xp gained. Healed for ${goblin.level} HP`);
+                    defeatedGoblinCount++;
+                    defeatedGoblinsEl.textContent = defeatedGoblinCount;
+                    player.hp = player.hp + goblin.level;
+                    playerHpEl.textContent = player.hp;
+                    player.xp = player.xp + 1 + goblin.level;
+                    playerXpEl.textContent = player.xp;
+                    // goblinDiv.classList.add('dead');
+                }
                 levelUp();
                 displayGoblins();
             }
         });
+        if (goblin.hp === 0) {
+            goblinDiv.classList.add('defeated');
+        }
         goblinListEl.append(goblinDiv);
     }
 }
@@ -110,15 +123,6 @@ displayGoblins();
 function hitRolls(goblin) {
     playerHitRoll(goblin);
     goblinHitRoll(goblin);
-    if (goblin.hp === 0) {
-        alert(`You have defeated ${goblin.name}. ${1 + goblin.level}xp gained. Healed for ${goblin.level} HP`);
-        defeatedGoblinCount++;
-        defeatedGoblinsEl.textContent = defeatedGoblinCount;
-        player.hp = player.hp + goblin.level;
-        playerHpEl.textContent = player.hp;
-        player.xp = player.xp + 1 + goblin.level;
-        playerXpEl.textContent = player.xp;
-    }
 }
 
 function playerHitRoll(goblin) {
@@ -149,6 +153,19 @@ function goblinHitRoll(goblin) {
         playerHpEl.textContent = player.hp;
     } else if (goblin.hp !== 0) {
         alert(`${goblin.name} missed!`);
+    }
+}
+
+function ifDefeated(goblin, goblinDiv) {
+    if (goblin.hp === 0) {
+        alert(`You have defeated ${goblin.name}. ${1 + goblin.level}xp gained. Healed for ${goblin.level} HP`);
+        defeatedGoblinCount++;
+        defeatedGoblinsEl.textContent = defeatedGoblinCount;
+        player.hp = player.hp + goblin.level;
+        playerHpEl.textContent = player.hp;
+        player.xp = player.xp + 1 + goblin.level;
+        playerXpEl.textContent = player.xp;
+        goblinDiv.classList.add('dead');
     }
 }
 
