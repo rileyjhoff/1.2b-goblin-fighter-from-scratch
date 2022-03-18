@@ -69,11 +69,12 @@ function displayGoblins() {
                 ifDefeated(goblin);
                 levelUp();
                 displayGoblins();
+            } else if (goblin.hp === 0) {
+                const index = goblins.indexOf(goblin);
+                goblins.splice(index, 1);
+                displayGoblins();
             }
         });
-        if (goblin.hp === 0) {
-            goblinDiv.classList.add('defeated');
-        }
         goblinListEl.append(goblinDiv);
     }
 }

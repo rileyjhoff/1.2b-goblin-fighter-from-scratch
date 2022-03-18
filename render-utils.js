@@ -6,6 +6,7 @@ export function renderGoblins(goblin) {
     goblinDiv.classList.add('goblin');
 
     nameAndHpEl.append(`${goblin.name} `);
+    levelEl.append(`Level ${goblin.level}`);
 
     if (goblin.hp >= 5) {
         nameAndHpEl.append(' 👹 ');
@@ -15,10 +16,11 @@ export function renderGoblins(goblin) {
         nameAndHpEl.append(' ' + ' 👿 ');
     } else if (goblin.hp === 0) {
         nameAndHpEl.append(' 💀 ');
+        goblinDiv.classList.add('defeated');
+        levelEl.append(' (click to remove goblin)');
     }
 
     nameAndHpEl.append(`   HP: ${goblin.hp}`);
-    levelEl.append(`Level ${goblin.level}`);
 
     goblinDiv.append(nameAndHpEl, levelEl);
     return goblinDiv;
