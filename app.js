@@ -31,7 +31,7 @@ let goblins = [
     },
     {
         name: 'Hogger Jr',
-        hp: 1,
+        hp: 2,
         level: 1,
         strength: 1,
         agility: 1,
@@ -52,8 +52,18 @@ goblinFormEl.addEventListener('submit', (e) => {
     }
     const newGoblin = {
         name: name,
-        level: Math.ceil(Math.random() * player.level)
     };
+    let goblinLvl = 0;
+    if (player.level === 1) {
+        goblinLvl = 1;
+    }
+    if (player.level === 2) {
+        goblinLvl = Math.ciel(Math.random() * player.level);
+    }
+    if (player.level > 2) {
+        goblinLvl = player.level - (Math.floor(Math.random() * 2));
+    }
+    newGoblin.level = goblinLvl;
     newGoblin.hp = Math.ceil(Math.random() * 3) + Math.ceil(Math.random() * newGoblin.level);
     newGoblin.strength = newGoblin.level;
     newGoblin.agility = newGoblin.level;
