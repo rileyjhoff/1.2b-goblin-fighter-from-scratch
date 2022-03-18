@@ -67,6 +67,22 @@ function displayGoblins() {
     goblinListEl.textContent = '';
     for (let goblin of goblins) {
         const goblinDiv = renderGoblins(goblin);
+        goblinDiv.addEventListener('click', () => {
+            if (goblin.hp > 0) {
+                if (Math.random() > 0.5) {
+                    goblin.hp--;
+                }
+                if (Math.random() > 0.66) {
+                    player.hp--;
+                    playerHpEl.textContent = player.hp;
+                }
+                if (goblin.hp === 0) {
+                    defeatedGoblinCount++;
+                    defeatedGoblinsEl.textContent = defeatedGoblinCount;
+                }
+                displayGoblins();
+            }
+        });
         goblinListEl.append(goblinDiv);
     }
 }
