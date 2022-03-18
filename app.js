@@ -37,14 +37,10 @@ let goblins = [
     }
 ];
 
-console.log(defeatedGoblinsEl, defeatedGoblinCount, goblinFormEl, goblinListEl, goblins, player, playerHpEl, playerLevelEl);
-
 // set event listeners 
     // get user input
     // use user input to update state 
     // update DOM to reflect the new state
-
-// Math.ceil(Math.random() * (4))
 
 goblinFormEl.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -53,7 +49,7 @@ goblinFormEl.addEventListener('submit', (e) => {
         name: data.get('goblin-name'),
         level: Math.ceil(Math.random() * player.level)
     };
-    newGoblin.hp = 3 + Math.ceil(Math.random() * newGoblin.level);
+    newGoblin.hp = Math.ceil(Math.random() * 3) + Math.ceil(Math.random() * newGoblin.level);
     newGoblin.strength = newGoblin.level;
     newGoblin.agility = newGoblin.level;
     newGoblin.accuracy = newGoblin.level;
@@ -70,16 +66,7 @@ function displayGoblins() {
         goblinDiv.addEventListener('click', () => {
             if (goblin.hp > 0) {
                 hitRolls(goblin);
-                if (goblin.hp === 0) {
-                    alert(`You have defeated ${goblin.name}. ${1 + goblin.level}xp gained. Healed for ${goblin.level} HP`);
-                    defeatedGoblinCount++;
-                    defeatedGoblinsEl.textContent = defeatedGoblinCount;
-                    player.hp = player.hp + goblin.level;
-                    playerHpEl.textContent = player.hp;
-                    player.xp = player.xp + 1 + goblin.level;
-                    playerXpEl.textContent = player.xp;
-                    // goblinDiv.classList.add('dead');
-                }
+                ifDefeated(goblin);
                 levelUp();
                 displayGoblins();
             }
@@ -90,33 +77,6 @@ function displayGoblins() {
         goblinListEl.append(goblinDiv);
     }
 }
-
-// function displayGoblins() {
-//     goblinListEl.textContent = '';
-//     for (let goblin of goblins) {
-//         const goblinDiv = renderGoblins(goblin);
-//         goblinDiv.addEventListener('click', () => {
-//             if (goblin.hp > 0) {
-//                 if (Math.random() > 0.5) {
-//                     goblin.hp--;
-//                 }
-//                 if (Math.random() > 0.66 && goblin.hp !== 0) {
-//                     player.hp--;
-//                     playerHpEl.textContent = player.hp;
-//                 }
-//                 displayGoblins();
-//                 if (goblin.hp === 0) {
-//                     alert(`You have defeated ${goblin.name}. ${1 + goblin.level}xp gained.`);
-//                     defeatedGoblinCount++;
-//                     defeatedGoblinsEl.textContent = defeatedGoblinCount;
-//                     player.xp = player.xp + 1 + goblin.level;
-//                     playerXpEl.textContent = player.xp;
-//                 }
-//             }
-//         });
-//         goblinListEl.append(goblinDiv);
-//     }
-// }
 
 displayGoblins();
 
@@ -156,7 +116,7 @@ function goblinHitRoll(goblin) {
     }
 }
 
-function ifDefeated(goblin, goblinDiv) {
+function ifDefeated(goblin) {
     if (goblin.hp === 0) {
         alert(`You have defeated ${goblin.name}. ${1 + goblin.level}xp gained. Healed for ${goblin.level} HP`);
         defeatedGoblinCount++;
@@ -165,7 +125,6 @@ function ifDefeated(goblin, goblinDiv) {
         playerHpEl.textContent = player.hp;
         player.xp = player.xp + 1 + goblin.level;
         playerXpEl.textContent = player.xp;
-        goblinDiv.classList.add('dead');
     }
 }
 
