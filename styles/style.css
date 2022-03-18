@@ -33,24 +33,15 @@ body {
 
 main {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    margin-bottom: calc(var(--footer-height));
+    width: 100%;
 }
 
-section {
-    background-color: var(--color5);
-    max-width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: var(--gutter);
-    padding-bottom: var(--gutter);
-    margin-top: var(--gutter);
-    margin-bottom: var(--gutter);
-    border: solid 2px var(--color1);
+.background {
+    z-index: -1;
+    position: fixed;
+    height: 100%;
+    width: 100%;
 }
 
 header {
@@ -60,7 +51,6 @@ header {
     height: var(--header-height);
     box-shadow: var(--shadow);
 }
-
 
 h2 {
     font-size: 1.8rem;
@@ -76,9 +66,9 @@ header img {
 }
 
 p {
-    margin: var(--gutter);
+    margin: 5px;
 }
-  
+
 footer {
     position: fixed;
     width: 100%;
@@ -88,4 +78,107 @@ footer {
     justify-content: flex-end;
     background-color: var(--color3);
     box-shadow: var(--shadow);
+}
+
+.player-container, .goblin-container {
+    width: 45%;
+    min-height: 90%;
+    height: fit-content;
+    margin-top: var(--gutter);
+    margin-bottom: 100px;
+}
+
+.player-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.player-container div {
+    border: solid 2px black;
+    margin: 5px 40px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    padding: 10px 30px;
+    min-width: 155px;
+    text-align: center;
+}
+
+#defeated-goblins-div {
+    margin-top: 40px;
+    background-color: burlywood;
+}
+
+#player-health {
+    background-color:tomato;
+}
+
+#player-level-container {
+    background-color: burlywood;
+}
+
+#player-img-container {
+    margin-top: 0;
+    border: none;
+}
+
+#player-img {
+    height: 250px;
+}
+
+.goblin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.goblin-container input, .goblin-container button {
+    height: 50px;
+    width: 100%;
+}
+
+.goblin-container form {
+    padding: 30px;
+}
+
+
+.goblins {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 65%;
+    overflow: scroll;
+    overflow-x: hidden;
+    min-height: 300px;
+    max-height: 400px;
+}
+
+.goblin {
+    width: 80%;
+    padding: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 200px;
+    border: solid black 2px;
+    background-color:limegreen
+}
+
+.goblin-container div > p {
+    text-align: center;
+}
+
+.defeated {
+    opacity: 0.5;
+}
+
+.hide {
+    display:none;
+}
+
+.game-over {
+    transform: rotate(90deg);
 }
